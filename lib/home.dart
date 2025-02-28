@@ -6,9 +6,6 @@ import 'dashboard.dart';
 import 'favourite_user.dart';
 import 'user_list.dart';
 
-// void main() {
-//   runApp(MyApp());
-// }
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
