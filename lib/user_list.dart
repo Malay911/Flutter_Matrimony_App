@@ -685,7 +685,6 @@ class _UserListPageState extends State<UserListPage> {
       filteredUsers = List.from(userList);
     });
   }
-
   // void _filterUsers(String query) {
   //   setState(() {
   //     filteredUsers = userList.where((user) {
