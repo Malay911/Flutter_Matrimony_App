@@ -51,9 +51,34 @@ class DatabaseHelper {
   }
 
   // Insert a new user into the database
+  // Future<int> insertUser(User user) async {
+  //   final db = await database;
+  //   return await db.insert('users', user.toMap(),
+  //       conflictAlgorithm: ConflictAlgorithm.replace);
+  // }
   Future<int> insertUser(User user) async {
-    final db = await database;
-    return await db.insert('users', user.toMap(), conflictAlgorithm: ConflictAlgorithm.replace);
+    Database db = await instance.database;
+    return await db.insert(
+        'users',
+        {
+          'id': user.id,
+          'name': user.name,
+          'gender': user.gender,
+          'dob': user.dob,
+          'maritalStatus': user.maritalStatus,
+          'country': user.country,
+          'state': user.state,
+          'city': user.city,
+          'religion': user.religion,
+          'caste': user.caste,
+          'subCaste': user.subCaste,
+          'education': user.education,
+          'occupation': user.occupation,
+          'email': user.email,
+          'phone': user.phone,
+          'isFavorite': user.isFavorite ? 1 : 0,
+        },
+        conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   // Fetch all users from the database
@@ -79,9 +104,40 @@ class DatabaseHelper {
   }
 
   // Update a user in the database
+  // Future<int> updateUser(User user) async {
+  //   final db = await database;
+  //   return await db.update(
+  //     'users',
+  //     user.toJson(),
+  //     where: 'id = ?',
+  //     whereArgs: [user.id],
+  //     conflictAlgorithm: ConflictAlgorithm.replace,
+  //   );
+  // }
   Future<int> updateUser(User user) async {
-    final db = await database;
-    return await db.update('users', user.toMap(), where: 'id = ?', whereArgs: [user.id]);
+    Database db = await instance.database;
+    return await db.update(
+      'users',
+      {
+        'name': user.name,
+        'gender': user.gender,
+        'dob': user.dob,
+        'maritalStatus': user.maritalStatus,
+        'country': user.country,
+        'state': user.state,
+        'city': user.city,
+        'religion': user.religion,
+        'caste': user.caste,
+        'subCaste': user.subCaste,
+        'education': user.education,
+        'occupation': user.occupation,
+        'email': user.email,
+        'phone': user.phone,
+        'isFavorite': user.isFavorite ? 1 : 0,
+      },
+      where: 'id = ?',
+      whereArgs: [user.id],
+    );
   }
 
   // Delete a user by id

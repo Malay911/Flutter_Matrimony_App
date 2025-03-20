@@ -95,7 +95,7 @@
 import 'package:intl/intl.dart';
 
 class User {
-  int? id;
+  String? id;
   String? name;
   String? gender;
   String? dob;
@@ -150,12 +150,14 @@ class User {
   int get age {
     if (dob == null || dob!.isEmpty) return 0; // Return 0 if dob is not set
     try {
-      DateTime birthDate = DateFormat('dd-MM-yyyy').parse(dob!); // Parse in 'dd-MM-yyyy' format
+      DateTime birthDate =
+          DateFormat('dd-MM-yyyy').parse(dob!); // Parse in 'dd-MM-yyyy' format
       DateTime now = DateTime.now();
       int calculatedAge = now.year - birthDate.year;
 
       // Adjust if birthday hasn't occurred yet this year
-      if (now.month < birthDate.month || (now.month == birthDate.month && now.day < birthDate.day)) {
+      if (now.month < birthDate.month ||
+          (now.month == birthDate.month && now.day < birthDate.day)) {
         calculatedAge--;
       }
       return calculatedAge;
@@ -186,7 +188,6 @@ class User {
     };
   }
 
-  // Convert from a map to a User instance
   factory User.fromMap(Map<String, dynamic> map) {
     return User(
       id: map['id'],
@@ -206,5 +207,60 @@ class User {
       phone: map['phone'],
       isFavorite: map['isFavorite'] == 1,
     );
+  }
+
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+      id: json['id']?.toString(),
+      name: json['name'],
+      gender: json['gender'],
+      dob: json['dob'],
+      maritalStatus: json['maritalStatus'],
+      country: json['country'],
+      state: json['state'],
+      city: json['city'],
+      religion: json['religion'],
+      caste: json['caste'],
+      subCaste: json['subCaste'],
+      education: json['education'],
+      occupation: json['occupation'],
+      email: json['email'],
+      phone: json['phone'],
+      isFavorite: json['isFavorite'] == true || json['isFavorite'] == 1,
+    );
+  }
+
+  // Map<String, dynamic> toJson() {
+  //   return {
+  //     'id': id,
+  //     'name': name,
+  //     'age': age,
+  //     'gender': gender,
+  //     'city': city,
+  //     'email': email,
+  //     'phone': phone,
+  //     'occupation': occupation,
+  //     'isFavorite': isFavorite,
+  //   };
+  // }
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'gender': gender,
+      'dob': dob,
+      'maritalStatus': maritalStatus,
+      'country': country,
+      'state': state,
+      'city': city,
+      'religion': religion,
+      'caste': caste,
+      'subCaste': subCaste,
+      'education': education,
+      'occupation': occupation,
+      'email': email,
+      'phone': phone,
+      'isFavorite': isFavorite,
+    };
   }
 }
