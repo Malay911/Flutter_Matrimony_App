@@ -30,7 +30,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  # Remove these Firebase-related dependencies
   # firebase_core: 
   # firebase_auth: 
   # google_sign_in: 
