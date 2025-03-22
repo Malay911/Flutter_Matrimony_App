@@ -1,3 +1,4 @@
+// Dummy data
 import 'user_class.dart';
 
 List<User> userList = [
